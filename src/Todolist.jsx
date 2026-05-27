@@ -1,26 +1,30 @@
 import TodoItem from "./TodoItems";
 
-function TodoList(props) {
+function TodoList({
+  todos,
+  deleteTodo,
+  editTodo,
+  toggleComplete,
+}) {
 
   return (
-  
+
     <div className="mt-10 px-4">
 
-      {props.todos.map((todo, index) => (
+      {todos.map((todo, index) => (
 
         <TodoItem
           key={index}
           todo={todo}
           index={index}
-          deleteTodo={props.deleteTodo}
-          editTodo={props.editTodo}
-          toggleComplete={props.toggleComplete}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
+          toggleComplete={toggleComplete}
         />
 
       ))}
 
     </div>
-
   );
 }
 

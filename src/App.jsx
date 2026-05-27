@@ -1,11 +1,8 @@
-import InputField from './input';
+import Todo from './Todo';
 
 function App() {
   return(
-    <div>
-
-      <InputField/>
-    </div>
+    <Todo/>
   );
 
 }
