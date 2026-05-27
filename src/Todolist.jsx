@@ -3,7 +3,7 @@ import TodoItem from "./TodoItems";
 function TodoList({
   todos,
   deleteTodo,
-  editTodo,
+  updateTodo,
   toggleComplete,
 }) {
 
@@ -18,7 +18,7 @@ function TodoList({
           todo={todo}
           index={index}
           deleteTodo={deleteTodo}
-          editTodo={editTodo}
+          updateTodo={updateTodo}
           toggleComplete={toggleComplete}
         />
 

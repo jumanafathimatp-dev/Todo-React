@@ -1,11 +1,15 @@
-function TodoAdd({
-  text,
-  setText,
-  addTodo,
-  updateTodo,
-  isEdit,
-  handleKeyDown,
-}) {
+import { useState } from "react";
+
+function TodoAdd({ addTodo }) {
+
+  const [text, setText] = useState("");
+
+  function handleAdd() {
+
+    addTodo(text);
+
+    setText("");
+  }
 
   return (
 
@@ -19,18 +23,20 @@ function TodoAdd({
         onChange={(e) =>
           setText(e.target.value)
         }
-        onKeyDown={handleKeyDown}
+        onKeyDown={(e) => {
+
+          if (e.key === "Enter") {
+            handleAdd();
+          }
+
+        }}
       />
 
       <button
-        onClick={
-          isEdit
-            ? updateTodo
-            : addTodo
-        }
+        onClick={handleAdd}
         className="bg-sky-900 text-white px-5 rounded-lg"
       >
-        {isEdit ? "Update" : "Add"}
+        Add
       </button>
 
     </div>
