@@ -12,7 +12,7 @@ function TodoItem({
     useState(false);
 
   const [editText, setEditText] =
-    useState(todo.text);
+    useState(todo.todo);
 
   function saveEdit(e) {
 
@@ -58,7 +58,7 @@ function TodoItem({
                 : ""
             }
           >
-            {todo.text}
+            {todo.todo}
           </p>
 
         )}

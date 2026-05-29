@@ -2,19 +2,33 @@ import { useState, useEffect}from "react";
 
 function UseTodo(){
 
-   
+     const [todos, setTodos] = useState(() => {
 
-    const [todos, setTodos] = useState(() => {
-    
-        const storedTodos =
-          localStorage.getItem("todos");
-    
-        return storedTodos
-          ? JSON.parse(storedTodos)
-          : [];
-    
-      });
-    
+    const storedTodos =
+      localStorage.getItem("todos");
+
+    return storedTodos
+      ? JSON.parse(storedTodos)
+      : [];
+
+  });
+
+   useEffect(() => {
+
+    if (todos.length === 0) {
+
+      fetch("https://dummyjson.com/todos")
+        .then((res) => res.json())
+        .then((data) => {
+
+          setTodos(data.todos);
+
+        });
+
+    }
+
+  }, [])
+ 
       useEffect(() => {
     
         localStorage.setItem(
@@ -28,16 +42,17 @@ function UseTodo(){
       function addTodo(text) {
     
         if (!text.trim()) return;
+
     
         setTodos([
           ...todos,
           {
-            text,
+            text:text,
             completed: false,
           },
         ]);
       }
-    
+       
       function deleteTodo(index) {
     
         const newTodos = todos.filter(
@@ -52,7 +67,7 @@ function UseTodo(){
     
         const updatedTodos = [...todos];
     
-        updatedTodos[index].text = text;
+        updatedTodos[index].todo = text;
     
         setTodos(updatedTodos);
       }
